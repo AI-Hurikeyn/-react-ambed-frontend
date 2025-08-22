@@ -1,0 +1,458 @@
+/* Greyscale Theme Override - Black, White & Grey Color Scheme */
+
+:root {
+  /* Override original color variables */
+  --ambed-base: #666666 !important;
+  --ambed-base-rgb: 102, 102, 102 !important;
+  --ambed-black: #000000 !important;
+  --ambed-black-rgb: 0, 0, 0 !important;
+  
+  /* New greyscale color palette */
+  --gs-black: #000000;
+  --gs-dark-grey: #333333;
+  --gs-medium-grey: #666666;
+  --gs-light-grey: #999999;
+  --gs-lighter-grey: #cccccc;
+  --gs-lightest-grey: #f5f5f5;
+  --gs-white: #ffffff;
+}
+
+/* Primary theme colors - convert to greyscale */
+.thm-btn,
+.main-slider__btn,
+.about-one__btn,
+.project-one__btn,
+.main-menu__btn,
+.newsletter__btn {
+  background-color: var(--gs-black) !important;
+  color: var(--gs-white) !important;
+  border-color: var(--gs-black) !important;
+}
+
+.thm-btn:hover,
+.main-slider__btn:hover,
+.about-one__btn:hover,
+.project-one__btn:hover,
+.main-menu__btn:hover,
+.newsletter__btn:hover {
+  background-color: var(--gs-dark-grey) !important;
+  color: var(--gs-white) !important;
+  border-color: var(--gs-dark-grey) !important;
+}
+
+/* Header colors */
+.main-header__top {
+  background-color: var(--gs-lightest-grey) !important;
+  border-bottom-color: var(--gs-lighter-grey) !important;
+}
+
+.main-header__top-address a,
+.main-header__top-address h5 {
+  color: var(--gs-black) !important;
+}
+
+.main-header__top-social a {
+  color: var(--gs-medium-grey) !important;
+}
+
+.main-header__top-social a:hover {
+  color: var(--gs-black) !important;
+}
+
+/* Main menu colors */
+.main-menu {
+  background-color: var(--gs-white) !important;
+}
+
+.main-menu__list a {
+  color: var(--gs-black) !important;
+}
+
+.main-menu__list a:hover {
+  color: var(--gs-medium-grey) !important;
+}
+
+/* Hero slider colors */
+.main-slider__sub-title {
+  color: var(--gs-medium-grey) !important;
+}
+
+.main-slider__title {
+  color: var(--gs-white) !important;
+}
+
+.main-slider__title span {
+  color: var(--gs-light-grey) !important;
+}
+
+.main-slider__border-left,
+.main-slider__border-right {
+  background-color: var(--gs-medium-grey) !important;
+}
+
+/* Navigation arrows - grey as requested */
+.main-slider__nav .swiper-button-prev,
+.main-slider__nav .swiper-button-next {
+  background-color: var(--gs-medium-grey) !important;
+  color: var(--gs-white) !important;
+  border: 2px solid var(--gs-medium-grey) !important;
+}
+
+.main-slider__nav .swiper-button-prev:hover,
+.main-slider__nav .swiper-button-next:hover {
+  background-color: var(--gs-dark-grey) !important;
+  border-color: var(--gs-dark-grey) !important;
+}
+
+/* Section titles and taglines */
+.section-title__tagline {
+  color: var(--gs-medium-grey) !important;
+}
+
+.section-title__title {
+  color: var(--gs-black) !important;
+}
+
+.section-title__line {
+  background-color: var(--gs-medium-grey) !important;
+}
+
+/* About section colors */
+.about-one__points-icon {
+  color: var(--gs-medium-grey) !important;
+}
+
+.about-one__call-icon {
+  color: var(--gs-medium-grey) !important;
+}
+
+.about-one__call a {
+  color: var(--gs-black) !important;
+}
+
+.about-one__project {
+  background-color: var(--gs-white) !important;
+  border: 2px solid var(--gs-lighter-grey) !important;
+}
+
+.about-one__project-icon {
+  color: var(--gs-medium-grey) !important;
+}
+
+.odometer {
+  color: var(--gs-black) !important;
+}
+
+/* Feature section colors */
+.feature-one__icon {
+  color: var(--gs-medium-grey) !important;
+}
+
+.feature-one__title a {
+  color: var(--gs-black) !important;
+}
+
+.feature-one__title a:hover {
+  color: var(--gs-medium-grey) !important;
+}
+
+.feature-one__arrow a {
+  color: var(--gs-medium-grey) !important;
+}
+
+.feature-one__arrow a:hover {
+  color: var(--gs-black) !important;
+}
+
+/* Services section colors */
+.services-one__icon {
+  color: var(--gs-medium-grey) !important;
+}
+
+.services-one__title a {
+  color: var(--gs-black) !important;
+}
+
+.services-one__title a:hover {
+  color: var(--gs-medium-grey) !important;
+}
+
+/* Quality work section colors */
+.quality-work__feature .icon {
+  color: var(--gs-medium-grey) !important;
+}
+
+.quality-work__progress .bar-inner {
+  background-color: var(--gs-medium-grey) !important;
+}
+
+.quality-work__video-icon {
+  background-color: var(--gs-black) !important;
+  color: var(--gs-white) !important;
+}
+
+.quality-work__video-icon:hover {
+  background-color: var(--gs-medium-grey) !important;
+}
+
+/* Project section colors */
+.project-one__title {
+  color: var(--gs-black) !important;
+}
+
+/* Team section colors */
+.team-one__social a {
+  color: var(--gs-medium-grey) !important;
+}
+
+.team-one__social a:hover {
+  color: var(--gs-black) !important;
+}
+
+.team-one__name a {
+  color: var(--gs-black) !important;
+}
+
+.team-one__name a:hover {
+  color: var(--gs-medium-grey) !important;
+}
+
+.team-one__title {
+  color: var(--gs-medium-grey) !important;
+}
+
+/* Testimonials section colors */
+.testimonial-one__client-name {
+  color: var(--gs-black) !important;
+}
+
+.testimonial-one__client-title {
+  color: var(--gs-medium-grey) !important;
+}
+
+.icon-quotation {
+  color: var(--gs-light-grey) !important;
+}
+
+/* Blog section colors */
+.blog-one__meta a {
+  color: var(--gs-medium-grey) !important;
+}
+
+.blog-one__title a {
+  color: var(--gs-black) !important;
+}
+
+.blog-one__title a:hover {
+  color: var(--gs-medium-grey) !important;
+}
+
+.blog-one__date {
+  color: var(--gs-medium-grey) !important;
+}
+
+/* Newsletter section colors */
+.newsletter {
+  background-color: var(--gs-lightest-grey) !important;
+}
+
+.newsletter__title {
+  color: var(--gs-black) !important;
+}
+
+.newsletter__text {
+  color: var(--gs-medium-grey) !important;
+}
+
+.newsletter__input-box input {
+  border-color: var(--gs-lighter-grey) !important;
+  color: var(--gs-black) !important;
+}
+
+.newsletter__input-box input:focus {
+  border-color: var(--gs-medium-grey) !important;
+}
+
+/* Footer colors */
+.site-footer {
+  background-color: var(--gs-dark-grey) !important;
+  color: var(--gs-white) !important;
+}
+
+.footer-widget__title {
+  color: var(--gs-white) !important;
+}
+
+.footer-widget__explore-list a,
+.footer-widget__contact-list a {
+  color: var(--gs-light-grey) !important;
+}
+
+.footer-widget__explore-list a:hover,
+.footer-widget__contact-list a:hover {
+  color: var(--gs-white) !important;
+}
+
+.site-footer__social a {
+  color: var(--gs-light-grey) !important;
+}
+
+.site-footer__social a:hover {
+  color: var(--gs-white) !important;
+}
+
+.site-footer__bottom {
+  background-color: var(--gs-black) !important;
+  color: var(--gs-light-grey) !important;
+}
+
+/* Icon colors */
+.icon-svg,
+.icon-svg-large {
+  color: var(--gs-medium-grey) !important;
+}
+
+.icon-svg:hover,
+.icon-svg-large:hover {
+  color: var(--gs-black) !important;
+}
+
+/* Link colors */
+a {
+  color: var(--gs-medium-grey) !important;
+}
+
+a:hover {
+  color: var(--gs-black) !important;
+}
+
+/* Text colors */
+body,
+p,
+span,
+div {
+  color: var(--gs-black) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gs-black) !important;
+}
+
+/* Background colors */
+.bg-light,
+.section-light {
+  background-color: var(--gs-lightest-grey) !important;
+}
+
+.bg-dark,
+.section-dark {
+  background-color: var(--gs-dark-grey) !important;
+  color: var(--gs-white) !important;
+}
+
+/* Border colors */
+.border,
+.border-top,
+.border-bottom,
+.border-left,
+.border-right {
+  border-color: var(--gs-lighter-grey) !important;
+}
+
+/* Custom cursor colors */
+.custom-cursor__cursor {
+  background-color: var(--gs-medium-grey) !important;
+}
+
+.custom-cursor__cursor-two {
+  border-color: var(--gs-medium-grey) !important;
+}
+
+/* Swiper navigation colors */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--gs-medium-grey) !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: var(--gs-black) !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: var(--gs-light-grey) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--gs-black) !important;
+}
+
+/* Image filters for greyscale effect */
+.about-one__img img,
+.quality-work__img img,
+.quality-work__small-img img,
+.services-one__img img,
+.project-one__img img,
+.team-one__img img,
+.testimonial-one__img img,
+.blog-one__img img {
+  filter: grayscale(100%) !important;
+  transition: filter 0.3s ease !important;
+}
+
+.about-one__img:hover img,
+.quality-work__img:hover img,
+.quality-work__small-img:hover img,
+.services-one__img:hover img,
+.project-one__img:hover img,
+.team-one__img:hover img,
+.testimonial-one__img:hover img,
+.blog-one__img:hover img {
+  filter: grayscale(0%) !important;
+}
+
+/* Hero background overlay for better contrast in greyscale */
+.main-slider .image-layer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  ) !important;
+  z-index: 1;
+}
+
+/* Ensure text contrast on hero */
+.main-slider__content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Brand logos greyscale */
+.brand-one img {
+  filter: grayscale(100%) !important;
+  opacity: 0.7 !important;
+  transition: all 0.3s ease !important;
+}
+
+.brand-one img:hover {
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
+}
+
+/* Remove any remaining color gradients */
+.feature-one__shape-1,
+.feature-one__shape-2,
+.about-one__shape-1,
+.quality-work-shape-1,
+.quality-work-shape-2,
+.quality-work-shape-3,
+.quality-work-shape-4,
+.quality-work-shape-5 {
+  filter: grayscale(100%) !important;
+}

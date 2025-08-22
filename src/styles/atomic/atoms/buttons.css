@@ -1,0 +1,275 @@
+/* ATOMIC BUTTON COMPONENTS - Use .atomic-btn to avoid conflicts with vendor styles */
+
+/* Base Atomic Button Styles */
+.atomic-btn {
+  /* Reset */
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  /* Typography */
+  font-family: var(--font-primary);
+  font-weight: var(--button-font-weight);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  white-space: nowrap;
+
+  /* Appearance */
+  border-radius: var(--button-border-radius);
+  transition: var(--transition-base);
+
+  /* Interaction */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.atomic-btn:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.atomic-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Atomic Button Sizes */
+.atomic-btn--sm {
+  padding: var(--button-padding-sm);
+  font-size: var(--font-size-sm);
+  min-height: var(--size-8);
+}
+
+.atomic-btn--base {
+  padding: var(--button-padding-base);
+  font-size: var(--font-size-base);
+  min-height: var(--size-10);
+}
+
+.atomic-btn--lg {
+  padding: var(--button-padding-lg);
+  font-size: var(--font-size-lg);
+  min-height: var(--size-12);
+}
+
+/* Button Variants */
+
+/* Primary Button */
+.atomic-btn--primary {
+  background: var(--gradient-primary);
+  color: var(--color-neutral-0);
+  box-shadow: var(--shadow-button);
+}
+
+.atomic-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.atomic-btn--primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* Secondary Button */
+.atomic-btn--secondary {
+  background: var(--color-neutral-0);
+  color: var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-300);
+}
+
+.atomic-btn--secondary:hover {
+  background: var(--color-neutral-50);
+  border-color: var(--color-neutral-400);
+}
+
+.atomic-btn--secondary:active {
+  background: var(--color-neutral-100);
+}
+
+/* Outline Button */
+.atomic-btn--outline {
+  background: transparent;
+  color: var(--color-primary-500);
+  border: 1px solid var(--color-primary-500);
+}
+
+.atomic-btn--outline:hover {
+  background: var(--color-primary-500);
+  color: var(--color-neutral-0);
+}
+
+.atomic-btn--outline:active {
+  background: var(--color-primary-600);
+}
+
+/* Ghost Button */
+.atomic-btn--ghost {
+  background: transparent;
+  color: var(--color-neutral-600);
+}
+
+.atomic-btn--ghost:hover {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+}
+
+.atomic-btn--ghost:active {
+  background: var(--color-neutral-200);
+}
+
+/* Orange CTA Button */
+.atomic-btn--cta {
+  background: var(--gradient-orange);
+  color: var(--color-neutral-0);
+  box-shadow: var(--shadow-button);
+  font-weight: var(--font-weight-semibold);
+}
+
+.atomic-btn--cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(255 90 31 / 30%);
+}
+
+.atomic-btn--cta:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* Success Button */
+.atomic-btn--success {
+  background: var(--color-success);
+  color: var(--color-neutral-0);
+}
+
+.atomic-btn--success:hover {
+  background: #059669;
+}
+
+/* Warning Button */
+.atomic-btn--warning {
+  background: var(--color-warning);
+  color: var(--color-neutral-0);
+}
+
+.atomic-btn--warning:hover {
+  background: #d97706;
+}
+
+/* Error Button */
+.atomic-btn--error {
+  background: var(--color-error);
+  color: var(--color-neutral-0);
+}
+
+.atomic-btn--error:hover {
+  background: #dc2626;
+}
+
+/* Dark Button */
+.atomic-btn--dark {
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-0);
+}
+
+.atomic-btn--dark:hover {
+  background: var(--color-neutral-800);
+}
+
+/* Button Shapes */
+.atomic-btn--pill {
+  border-radius: var(--radius-full);
+}
+
+.atomic-btn--square {
+  border-radius: var(--radius-none);
+}
+
+.atomic-btn--rounded {
+  border-radius: var(--radius-md);
+}
+
+/* Icon Buttons */
+.atomic-btn--icon {
+  padding: var(--space-2);
+  min-width: var(--size-10);
+  min-height: var(--size-10);
+}
+
+.atomic-btn--icon.atomic-btn--sm {
+  padding: var(--space-1-5);
+  min-width: var(--size-8);
+  min-height: var(--size-8);
+}
+
+.atomic-btn--icon.atomic-btn--lg {
+  padding: var(--space-3);
+  min-width: var(--size-12);
+  min-height: var(--size-12);
+}
+
+/* Full Width Button */
+.atomic-btn--full {
+  width: 100%;
+}
+
+/* Button Group */
+.atomic-btn-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.atomic-btn-group .atomic-btn {
+  border-radius: 0;
+  border-right-width: 0;
+}
+
+.atomic-btn-group .atomic-btn:first-child {
+  border-top-left-radius: var(--button-border-radius);
+  border-bottom-left-radius: var(--button-border-radius);
+}
+
+.atomic-btn-group .atomic-btn:last-child {
+  border-top-right-radius: var(--button-border-radius);
+  border-bottom-right-radius: var(--button-border-radius);
+  border-right-width: 1px;
+}
+
+.atomic-btn-group .atomic-btn:only-child {
+  border-radius: var(--button-border-radius);
+  border-right-width: 1px;
+}
+
+/* Loading State */
+.atomic-btn--loading {
+  position: relative;
+  color: transparent;
+}
+
+.atomic-btn--loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentcolor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.8s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

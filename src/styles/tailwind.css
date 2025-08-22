@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utilities that work with vendor CSS */
+@layer utilities {
+  .text-ambed-base {
+    color: var(--ambed-base);
+  }
+
+  .text-ambed-black {
+    color: var(--ambed-black);
+  }
+
+  .bg-ambed-base {
+    background-color: var(--ambed-base);
+  }
+
+  .bg-ambed-black {
+    background-color: var(--ambed-black);
+  }
+
+  .border-ambed-base {
+    border-color: var(--ambed-base);
+  }
+}

@@ -1,0 +1,247 @@
+/* MAGIC DECOR - Main Stylesheet */
+
+/* Import design system variables first - for use in atomic components */
+@import url('./styles/atomic/base/variables.css');
+
+/* Centralized atomic import for refactor: import the atomic index which manages order of atomic layers */
+@import url('./styles/atomic/index.css');
+@import url('./styles/tailwind.css');
+@import url('./styles/atomic/organisms/navbar.css');
+@import url('./styles/atomic/organisms/hero.css');
+
+/* 
+NOTE: Vendor theme CSS is loaded in index.html and provides:
+- .about-one, .services-one, .section-title classes
+- All component styling for WordPress theme
+- Should NOT be overridden by atomic CSS
+*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Ensure page starts at top */
+html {
+  scroll-padding-top: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Custom Magic Decor Enhancements */
+
+/* Magic Decor Preloader */
+.magic-preloader {
+  position: fixed;
+  background-color: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.magic-preloader__image {
+  animation: flipInY 2s infinite both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.magic-preloader__image img {
+  max-width: 200px;
+  height: auto;
+}
+
+@keyframes flipInY {
+  0% {
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotateY(-20deg);
+  }
+  60% {
+    transform: perspective(400px) rotateY(10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotateY(-5deg);
+  }
+  100% {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+/* Make main header logo bigger */
+.main-header__logo img {
+  max-height: 70px !important;
+  width: auto !important;
+  transition: transform 0.3s ease;
+}
+
+.main-header__logo:hover img {
+  transform: scale(1.05);
+}
+
+/* Mobile logo size adjustment */
+@media (width <= 991px) {
+  .main-header__logo img {
+    max-height: 55px !important;
+  }
+}
+
+/* Simple, Fluid Animation System - No Layout Breaking */
+
+/* Base smooth reveal animation */
+.smooth-reveal {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.smooth-reveal.visible {
+  opacity: 1;
+}
+
+/* Fade Up - Gentle upward slide */
+.smooth-reveal.fadeUp {
+  transform: translateY(30px);
+}
+
+.smooth-reveal.fadeUp.visible {
+  transform: translateY(0);
+}
+
+/* Fade Left - Gentle left slide */
+.smooth-reveal.fadeLeft {
+  transform: translateX(-30px);
+}
+
+.smooth-reveal.fadeLeft.visible {
+  transform: translateX(0);
+}
+
+/* Fade Right - Gentle right slide */
+.smooth-reveal.fadeRight {
+  transform: translateX(30px);
+}
+
+.smooth-reveal.fadeRight.visible {
+  transform: translateX(0);
+}
+
+/* Fade Down - Gentle downward slide */
+.smooth-reveal.fadeDown {
+  transform: translateY(-30px);
+}
+
+.smooth-reveal.fadeDown.visible {
+  transform: translateY(0);
+}
+
+/* Zoom In - Gentle scale */
+.smooth-reveal.zoomIn {
+  transform: scale(0.95);
+}
+
+.smooth-reveal.zoomIn.visible {
+  transform: scale(1);
+}
+
+/* Fade In - Simple opacity */
+.smooth-reveal.fadeIn {
+  opacity: 0;
+}
+
+/* Staggered delays for smooth sequence */
+.smooth-reveal:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.smooth-reveal:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.smooth-reveal:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.smooth-reveal:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.smooth-reveal:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.smooth-reveal:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* Mobile optimization */
+@media (width <= 768px) {
+  .smooth-reveal {
+    transition-duration: 0.5s;
+  }
+
+  .smooth-reveal.fadeUp,
+  .smooth-reveal.fadeDown {
+    transform: translateY(20px);
+  }
+
+  .smooth-reveal.fadeLeft,
+  .smooth-reveal.fadeRight {
+    transform: translateX(20px);
+  }
+
+  .smooth-reveal.fadeUp.visible,
+  .smooth-reveal.fadeDown.visible,
+  .smooth-reveal.fadeLeft.visible,
+  .smooth-reveal.fadeRight.visible {
+    transform: translate(0, 0);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .smooth-reveal {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+  }
+}
+
+/* REMOVED: Floating navbar logo enhancements - handled by atomic navbar */
+/* REMOVED: Adjust navbar height for bigger logo - handled by atomic navbar */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset scroll for fixed navbar */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+div[id] {
+  scroll-margin-top: 100px;
+}

@@ -1,0 +1,295 @@
+/* LINK ATOMS - Reusable Link Components */
+
+/* Base Link Styles */
+.atomic-link {
+  color: var(--color-primary-500);
+  text-decoration: none;
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.atomic-link:hover {
+  color: var(--color-primary-600);
+}
+
+.atomic-link:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.atomic-link:active {
+  color: var(--color-primary-700);
+}
+
+/* Link Variants */
+
+/* Default Link with Underline */
+.atomic-link--underline {
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-300);
+  text-underline-offset: 2px;
+}
+
+.atomic-link--underline:hover {
+  text-decoration-color: var(--color-primary-500);
+}
+
+/* Hover Underline */
+.atomic-link--hover-underline {
+  text-decoration: none;
+}
+
+.atomic-link--hover-underline:hover {
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+  text-underline-offset: 2px;
+}
+
+/* No Underline */
+.atomic-link--no-underline {
+  text-decoration: none;
+}
+
+.atomic-link--no-underline:hover {
+  text-decoration: none;
+}
+
+/* Subtle Link */
+.atomic-link--subtle {
+  color: var(--color-neutral-600);
+}
+
+.atomic-link--subtle:hover {
+  color: var(--color-neutral-700);
+}
+
+/* Muted Link */
+.atomic-link--muted {
+  color: var(--color-neutral-500);
+}
+
+.atomic-link--muted:hover {
+  color: var(--color-neutral-600);
+}
+
+/* White Link */
+.atomic-link--white {
+  color: var(--color-neutral-0);
+}
+
+.atomic-link--white:hover {
+  color: var(--color-neutral-200);
+}
+
+/* Dark Link */
+.atomic-link--dark {
+  color: var(--color-neutral-900);
+}
+
+.atomic-link--dark:hover {
+  color: var(--color-neutral-700);
+}
+
+/* Brand Link */
+.atomic-link--brand {
+  color: var(--color-primary-500);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.atomic-link--brand:hover {
+  color: var(--color-primary-600);
+}
+
+/* Navigation Link */
+.atomic-link--nav {
+  color: var(--color-dark-text-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-tight);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+}
+
+.atomic-link--nav:hover {
+  color: var(--color-dark-text-hover);
+  background: rgb(255 255 255 / 10%);
+}
+
+.atomic-link--nav:focus-visible {
+  outline: 2px solid var(--color-neutral-0);
+  outline-offset: 2px;
+}
+
+.atomic-link--nav.active {
+  color: var(--color-dark-text-hover);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Pill Link */
+.atomic-link--pill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+.atomic-link--pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* External Link */
+.atomic-link--external {
+  position: relative;
+}
+
+.atomic-link--external::after {
+  content: '↗';
+  display: inline-block;
+  margin-left: var(--space-1);
+  font-size: 0.875em;
+  opacity: 0.7;
+}
+
+/* Download Link */
+.atomic-link--download {
+  position: relative;
+}
+
+.atomic-link--download::after {
+  content: '↓';
+  display: inline-block;
+  margin-left: var(--space-1);
+  font-size: 0.875em;
+  opacity: 0.7;
+}
+
+/* Back Link */
+.atomic-link--back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-weight-medium);
+}
+
+.atomic-link--back::before {
+  content: '←';
+  font-size: 1.125em;
+}
+
+/* Link with Icon */
+.atomic-link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Link States */
+.atomic-link--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.atomic-link--loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* Link Sizes */
+.atomic-link--sm {
+  font-size: var(--font-size-sm);
+}
+
+.atomic-link--base {
+  font-size: var(--font-size-base);
+}
+
+.atomic-link--lg {
+  font-size: var(--font-size-lg);
+}
+
+.atomic-link--xl {
+  font-size: var(--font-size-xl);
+}
+
+/* Link Group */
+.atomic-link-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.atomic-link-group--horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.atomic-link-group--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Breadcrumb Links */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.breadcrumb .atomic-link {
+  color: var(--color-neutral-500);
+}
+
+.breadcrumb .atomic-link:hover {
+  color: var(--color-neutral-700);
+}
+
+.breadcrumb .separator {
+  color: var(--color-neutral-400);
+  user-select: none;
+}
+
+.breadcrumb .current {
+  color: var(--color-neutral-900);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Footer Links */
+.atomic-link--footer {
+  color: var(--color-neutral-400);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+}
+
+.atomic-link--footer:hover {
+  color: var(--color-neutral-300);
+}
+
+/* Social Links */
+.atomic-link--social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-10);
+  height: var(--size-10);
+  border-radius: var(--radius-md);
+  color: var(--color-neutral-600);
+  transition: var(--transition-base);
+}
+
+.atomic-link--social:hover {
+  color: var(--color-primary-500);
+  background: var(--color-primary-50);
+  transform: translateY(-1px);
+}

@@ -1,0 +1,14 @@
+<!-- Add these inside the <head> of your frontend/index.html for pixel-perfect design and all icons/animations -->
+<link rel="stylesheet" href="/vendor/assets/themes/ambed/style.css?ver=1754260206.css">
+<link rel="stylesheet" href="/vendor/assets/themes/ambed/style.css?ver=1754260484.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/elementor/assets/css/frontend.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/ambed-addon/assets/css/ambed-addon.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/layerdrops-toolbar/assets/css/layerdrops-toolbar.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/woo-smart-quick-view/assets/css/woo-smart-quick-view.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/woo-smart-wishlist/assets/css/woo-smart-wishlist.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/woocommerce/assets/css/woocommerce.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/contact-form-7/includes/css/styles.css">
+<link rel="stylesheet" href="/vendor/assets/plugins/recent-posts-widget-with-thumbnails/public.css?ver=7.1.1.css">
+<link rel="stylesheet" href="/vendor/assets/themes/ambed/assets/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="/vendor/assets/themes/ambed/assets/vendors/animate/animate.min.css">
+<link rel="stylesheet" href="/vendor/assets/themes/ambed/assets/vendors/ambed-icons/style.css">

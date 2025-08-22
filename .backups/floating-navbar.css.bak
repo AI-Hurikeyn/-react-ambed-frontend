@@ -1,0 +1,41 @@
+/* Backup of src/styles/floating-navbar.css
+   Created during automated refactor on 2025-08-17
+   Original content archived here for safe restore.
+*/
+
+/* --- ORIGINAL FILE CONTENT START --- */
+
+/* SUPERPOWER-STYLE NAVBAR - Modern Pill Design */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Design System Variables */
+:root {
+  /* SUPERPOWER Color Palette */
+  --sp-bg-gradient: linear-gradient(90deg, #0e0e0e 0%, #1a0e0a 100%);
+  --sp-text-primary: rgb(255 255 255 / 85%);
+  --sp-text-hover: rgb(255 255 255 / 100%);
+  --sp-brand-text: #fff;
+  --sp-cta-orange: #ff5a1f;
+  --sp-cta-orange-hover: #f97316;
+
+  /* Navbar Dimensions */
+  --sp-navbar-height: 64px;
+  --sp-navbar-padding: 1.5rem 2rem;
+  --sp-border-radius: 50px;
+  --sp-z-index: 9999;
+
+  /* Typography */
+  --sp-font-family: 'Poppins', -apple-system, blinkmacsystemfont, sans-serif;
+  --sp-font-size-nav: 15px;
+  --sp-font-weight-nav: 500;
+  --sp-font-weight-brand: 600;
+  --sp-letter-spacing: -0.2px;
+
+  /* Shadows */
+  --sp-shadow: 0 8px 32px rgb(0 0 0 / 40%), 0 4px 16px rgb(0 0 0 / 20%);
+
+  /* Transitions */
+  --sp-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- ORIGINAL FILE CONTENT END --- */

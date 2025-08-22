@@ -1,0 +1,59 @@
+/* HERO ORGANISM - Canonical unified hero styles
+   Migrated from hero-overrides.css during refactor so the hero component has a single
+   authoritative stylesheet at src/styles/atomic/organisms/hero.css
+*/
+
+/* Ensure the main slider respects full viewport height */
+.main-slider,
+.main-slider .swiper-container,
+.main-slider .swiper-slide {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+}
+
+.main-slider__content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important; /* respect parent 100vh */
+  padding: 0 20px !important; /* remove large top padding that caused overflow */
+  margin-top: var(--navbar-height); /* push block below navbar */
+  min-height: calc(100vh - var(--navbar-height)); /* available vertical space */
+}
+
+/* Keep subtitle / corner overrides minimal; vendor/theme supplies visuals */
+.main-slider__sub-title-box {
+  padding: 0 40px !important;
+}
+
+/* Mobile responsive adjustments */
+@media (width <= 768px) {
+  .main-slider__content {
+    padding: 100px 15px 50px !important;
+    margin-top: var(--navbar-height); /* push block below navbar */
+    min-height: calc(100vh - var(--navbar-height)); /* available vertical space */
+  }
+
+  .main-slider__title {
+    font-size: 3rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .main-slider__sub-title {
+    font-size: 0.9rem !important;
+    letter-spacing: 1.5px !important;
+  }
+}
+
+@media (width <= 767px) {
+  .main-slider__sub-title-box {
+    padding: 0 55px !important;
+  }
+
+  .main-slider__border-left,
+  .main-slider__border-right {
+    width: 45px !important;
+  }
+}

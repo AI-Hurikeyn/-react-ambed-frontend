@@ -1,0 +1,122 @@
+/* ATOMIC CSS ARCHITECTURE - Master Index
+ * 
+ * This file imports all CSS components in the correct order:
+ * 1. Base (Variables, Reset, Typography)
+ * 2. Atoms (Buttons, Links, Inputs)
+ * 3. Molecules (Navigation items, Cards, etc.)
+ * 4. Organisms (Navbar, Hero, Footer)
+ * 5. Layout (Flexbox, Grid, Positioning)
+ * 6. Utilities (Spacing, Colors, Display)
+ * 7. Themes (Color schemes, Dark mode)
+ */
+
+/* === BASE LAYER === */
+
+/* Core design system and global styles */
+@import url('./base/variables.css');
+@import url('./base/reset.css');
+@import url('./base/typography.css');
+
+/* === ATOMS LAYER === */
+
+/* Smallest reusable components */
+@import url('./atoms/buttons.css');
+@import url('./atoms/links.css');
+@import url('./atoms/inputs.css');
+
+/* === MOLECULES LAYER === */
+
+/* Combinations of atoms */
+
+/* @import './molecules/navigation-items.css'; */
+
+/* @import './molecules/cards.css'; */
+
+/* @import './molecules/forms.css'; */
+
+/* === ORGANISMS LAYER === */
+
+/* Complex components made from atoms and molecules */
+@import url('./organisms/navbar.css');
+
+/* @import './organisms/hero.css'; - Removed to use vendor CSS */
+
+/* @import './organisms/footer.css'; */
+
+/* @import './organisms/header.css'; */
+
+/* === LAYOUT LAYER === */
+
+/* Structure and positioning */
+@import url('./layout/flexbox-grid.css');
+
+/* === UTILITIES LAYER === */
+
+/* Single-purpose utility classes */
+@import url('./utilities/spacing.css');
+
+/* === THEMES LAYER === */
+
+/* Color schemes and theme variations */
+
+/* @import './themes/dark-mode.css'; */
+
+/* @import './themes/high-contrast.css'; */
+
+/* === Certificates Glass 3D Section === */
+.certs { position:relative; padding:120px 0; background:linear-gradient(180deg,#f0f0f0 0%,#ffffff 100%); }
+.certs .section-title__tagline { letter-spacing:1.5px; }
+.certs__grid { display:flex; justify-content:center; gap:clamp(2.5rem,7vw,5rem); perspective:1800px; flex-wrap:wrap; }
+.certs__grid:before { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 50% 20%,rgba(255,255,255,0.65) 0%,rgba(255,255,255,0) 60%); mix-blend-mode:overlay; }
+.certs__grid { position:relative; }
+
+.cert-card { --rx:0deg; --ry:0deg; --tilt-opacity:0; width:clamp(300px,32vw,420px); aspect-ratio:3/4; position:relative; opacity:0; transform:translateY(60px) scale(.92) rotateX(12deg); filter:blur(8px) saturate(0.6); transition:opacity .9s cubic-bezier(.19,1,.22,1), transform 1.2s cubic-bezier(.19,1,.22,1), filter 1.2s ease; }
+.cert-card.in-view { opacity:1; transform:translateY(0) scale(1) rotateX(0deg); filter:blur(0) saturate(1); }
+.cert-card:nth-child(2){ transition-delay:.15s; }
+.cert-card:nth-child(3){ transition-delay:.3s; }
+
+.cert-card__inner { width:100%; height:100%; position:relative; border-radius:32px; padding:14px; background:linear-gradient(135deg,rgba(255,255,255,0.55),rgba(255,255,255,0.15)); border:1px solid rgba(255,255,255,0.5); box-shadow:0 10px 40px -12px rgba(0,0,0,.25), 0 2px 6px -1px rgba(0,0,0,.1); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%); overflow:hidden; transform:rotateX(var(--rx)) rotateY(var(--ry)); transform-style:preserve-3d; transition:transform .5s ease; }
+.cert-card:hover .cert-card__inner { box-shadow:0 18px 60px -12px rgba(0,0,0,.35),0 4px 14px -2px rgba(0,0,0,.18); }
+
+.cert-card__media { position:relative; width:100%; height:100%; border-radius:24px; overflow:hidden; isolation:isolate; }
+.cert-card__media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; transform:translateZ(40px) scale(1.02); filter:contrast(1.02) brightness(1.02); transition:transform 1.8s cubic-bezier(.19,1,.22,1); }
+.cert-card:hover .cert-card__media img { transform:translateZ(60px) scale(1.06); }
+
+/* Animated ambient ring */
+.cert-card__ring { position:absolute; inset:-40%; background:conic-gradient(from 0deg,rgba(255,255,255,.65),rgba(255,255,255,0) 60%, rgba(255,255,255,.45)); animation:spinRing 18s linear infinite; mix-blend-mode:overlay; opacity:.15; filter:blur(12px); }
+@keyframes spinRing { to { transform:rotate(360deg); } }
+
+/* Glare sweep */
+.cert-card__glare { position:absolute; inset:0; background:linear-gradient(115deg,rgba(255,255,255,0) 10%,rgba(255,255,255,.45) 45%,rgba(255,255,255,0) 55%); mix-blend-mode:screen; transform:translateX(-120%) rotate(3deg); animation:glare 9s ease-in-out infinite; opacity:.35; }
+@keyframes glare { 0%,65% { transform:translateX(-120%) rotate(3deg); } 75% { transform:translateX(60%) rotate(3deg); } 100% { transform:translateX(120%) rotate(3deg); } }
+
+.cert-card__meta { position:absolute; left:0; right:0; bottom:0; padding:24px 24px 26px; background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 90%); transform:translateZ(80px); color:#fff; font-size:.9rem; letter-spacing:.35px; backdrop-filter:blur(2px); }
+.cert-card__title { margin:0 0 4px; font-size:1.2rem; font-weight:600; letter-spacing:.5px; color:#fff; }
+.cert-card__issuer { margin:0 0 6px; font-size:.75rem; letter-spacing:1px; opacity:.85; text-transform:uppercase; }
+.cert-card__desc { margin:0; font-size:.78rem; line-height:1.3; opacity:.9; }
+
+/* Pointer halo showing tilt intensity */
+.cert-card__inner:after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 60%); opacity:var(--tilt-opacity); mix-blend-mode:overlay; transition:opacity .4s ease; pointer-events:none; filter:blur(18px); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cert-card,.cert-card__inner,.cert-card__media img { transition:none !important; animation:none !important; transform:none !important; filter:none !important; }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) { .cert-card { width:86%; } }
+
+/* Certificates continuous motion enhancements */
+.certs .fade-seq { opacity:0; transform:translateY(40px); animation:certFadeUp .9s .15s cubic-bezier(.19,1,.22,1) forwards; }
+@keyframes certFadeUp { to { opacity:1; transform:translateY(0); } }
+
+.cert-card { animation:certEnter .9s cubic-bezier(.19,1,.22,1) forwards; }
+.cert-card:nth-child(1){ animation-delay:.15s; }
+.cert-card:nth-child(2){ animation-delay:.3s; }
+.cert-card:nth-child(3){ animation-delay:.45s; }
+@keyframes certEnter { from { opacity:0; transform:translateY(90px) scale(.9) rotateX(18deg); filter:blur(10px); } to { opacity:1; transform:translateY(0) scale(1) rotateX(var(--rx,0deg)); filter:blur(0); } }
+
+.cert-card__glare--alt { background:linear-gradient(225deg,rgba(255,255,255,0) 5%,rgba(255,255,255,.5) 50%,rgba(255,255,255,0) 70%); mix-blend-mode:overlay; animation:glareAlt 11s ease-in-out infinite; opacity:.25; transform:translateX(120%) rotate(-2deg); }
+@keyframes glareAlt { 0%,60% { transform:translateX(120%) rotate(-2deg);} 75% { transform:translateX(-40%) rotate(-2deg);} 100% { transform:translateX(-120%) rotate(-2deg);} }
+
+/* === End Certificates Section === */

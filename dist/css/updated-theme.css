@@ -1,0 +1,209 @@
+/* Updated Theme - Natural colors with black header */
+
+/* Remove all greyscale filters and show natural colors */
+* {
+  filter: none !important;
+}
+
+img {
+  filter: none !important;
+}
+
+/* Black header background with white text */
+.main-header__top {
+  background-color: #000000 !important;
+  border-bottom: 1px solid #333333 !important;
+}
+
+/* White text for contrast on black header */
+.main-header__top,
+.main-header__top p,
+.main-header__top h5,
+.main-header__top a,
+.main-header__top-address a,
+.main-header__top-address h5,
+.main-header__top-address p {
+  color: #ffffff !important;
+}
+
+.main-header__top a:hover {
+  color: #cccccc !important;
+}
+
+/* Social media icons in header - white */
+.main-header__top-right-social a,
+.main-header__top-right-social i {
+  color: #ffffff !important;
+}
+
+.main-header__top-right-social a:hover,
+.main-header__top-right-social a:hover i {
+  color: #cccccc !important;
+}
+
+/* Keep navigation menu original styling */
+.main-menu {
+  background-color: #ffffff !important;
+}
+
+/* Restore original button colors */
+.thm-btn {
+  background-color: #c8b568 !important;
+  color: #ffffff !important;
+  border-color: #c8b568 !important;
+}
+
+.thm-btn:hover {
+  background-color: #b8a558 !important;
+  border-color: #b8a558 !important;
+}
+
+/* Remove any greyscale filters that might be applied */
+body *,
+.main-slider,
+.about-one,
+.feature-one,
+.services-one,
+.quality-work,
+.project-one,
+.team-one,
+.testimonial-one,
+.brand-one,
+.blog-one,
+.site-footer {
+  filter: none !important;
+}
+
+/* Ensure images show in full color */
+img,
+.image-layer,
+[style*="background-image"] {
+  filter: none !important;
+}
+
+/* Mobile navigation styling fixes - match demo exactly */
+.mobile-nav__wrapper {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 99999 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.mobile-nav__wrapper.expanded {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.mobile-nav__overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  cursor: pointer !important;
+}
+
+.mobile-nav__content {
+  position: absolute !important;
+  top: 0 !important;
+  right: -320px !important;
+  width: 320px !important;
+  height: 100% !important;
+  background-color: #000000 !important;
+  padding: 30px !important;
+  transition: all 0.3s ease-in-out !important;
+  overflow-y: auto !important;
+}
+
+.mobile-nav__wrapper.expanded .mobile-nav__content {
+  right: 0 !important;
+}
+
+.mobile-nav__close {
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
+  width: 30px !important;
+  height: 30px !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+}
+
+.mobile-nav__close:before {
+  content: "\f00d" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+}
+
+.mobile-nav__content .logo-box {
+  margin-bottom: 30px !important;
+  text-align: center !important;
+}
+
+.mobile-nav__content .logo-box img {
+  max-width: 120px !important;
+  height: auto !important;
+}
+
+.mobile-nav__contact {
+  margin: 30px 0 !important;
+  padding: 0 !important;
+}
+
+.mobile-nav__contact li {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 15px !important;
+  color: #ffffff !important;
+}
+
+.mobile-nav__contact li i {
+  margin-right: 10px !important;
+  color: #c8b568 !important;
+  width: 20px !important;
+}
+
+.mobile-nav__contact a,
+.mobile-nav__social a,
+.mobile-nav__contact li,
+.mobile-nav__social li {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.mobile-nav__contact a:hover,
+.mobile-nav__social a:hover {
+  color: #c8b568 !important;
+}
+
+.mobile-nav__social {
+  display: flex !important;
+  gap: 15px !important;
+  margin-top: 20px !important;
+}
+
+.mobile-nav__social a {
+  display: inline-block !important;
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  text-align: center !important;
+  background-color: #333333 !important;
+  border-radius: 50% !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.mobile-nav__social a:hover {
+  background-color: #c8b568 !important;
+  color: #ffffff !important;
+}

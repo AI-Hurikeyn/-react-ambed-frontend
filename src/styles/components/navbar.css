@@ -1,0 +1,11 @@
+/* DEPRECATED: This component stylesheet has been archived and moved into the atomic system.
+   Reason: Duplicate/conflicting navbar styles caused layout instability. The canonical navbar now lives in:
+   src/styles/atomic/organisms/navbar.css
+
+   The original full file content is stored at:
+   .backups/navbar.css.bak
+
+   Do NOT import this file. It has been intentionally disabled to prevent style conflicts.
+*/
+
+/* No operational CSS below - file intentionally neutralized during refactor. */
