@@ -3,7 +3,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
-import * as WOW from 'wowjs';
 import type { Swiper as SwiperClass } from 'swiper';
 
 // Import decomposed sections
@@ -54,7 +53,7 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    new WOW.WOW({ live: false }).init();
+    // Removed direct WOW.js initialization to avoid "this is undefined" error in wow.js
 
     // Ensure page starts at top and prevent scroll restoration
     if ('scrollRestoration' in history) {
