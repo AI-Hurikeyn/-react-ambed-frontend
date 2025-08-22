@@ -45,9 +45,9 @@
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.4.31",
     "prettier": "^3.6.2",
-    "stylelint": "^16.23.1",
+    "stylelint": "^15.11.0",
     "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^39.0.0",
+    "stylelint-config-standard": "^34.0.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
