@@ -67,7 +67,7 @@
 .certs { position:relative; padding:120px 0; background:linear-gradient(180deg,#f0f0f0 0%,#ffffff 100%); }
 .certs .section-title__tagline { letter-spacing:1.5px; }
 .certs__grid { display:flex; justify-content:center; gap:clamp(2.5rem,7vw,5rem); perspective:1800px; flex-wrap:wrap; }
-.certs__grid:before { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 50% 20%,rgba(255,255,255,0.65) 0%,rgba(255,255,255,0) 60%); mix-blend-mode:overlay; }
+.certs__grid
 .certs__grid { position:relative; }
 
 .cert-card { --rx:0deg; --ry:0deg; --tilt-opacity:0; width:clamp(300px,32vw,420px); aspect-ratio:3/4; position:relative; opacity:0; transform:translateY(60px) scale(.92) rotateX(12deg); filter:blur(8px) saturate(0.6); transition:opacity .9s cubic-bezier(.19,1,.22,1), transform 1.2s cubic-bezier(.19,1,.22,1), filter 1.2s ease; }
@@ -81,6 +81,8 @@
 .cert-card__media { position:relative; width:100%; height:100%; border-radius:24px; overflow:hidden; isolation:isolate; }
 .cert-card__media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; transform:translateZ(40px) scale(1.02); filter:contrast(1.02) brightness(1.02); transition:transform 1.8s cubic-bezier(.19,1,.22,1); }
 .cert-card:hover .cert-card__media img { transform:translateZ(60px) scale(1.06); }
+/* Disable on certificates landscape variant */
+.certs--landscape .cert-card:hover .cert-card__media img { transform: translate(-50%, -50%) rotate(-90deg) !important; }
 
 /* Animated ambient ring */
 .cert-card__ring { position:absolute; inset:-40%; background:conic-gradient(from 0deg,rgba(255,255,255,.65),rgba(255,255,255,0) 60%, rgba(255,255,255,.45)); animation:spinRing 18s linear infinite; mix-blend-mode:overlay; opacity:.15; filter:blur(12px); }
@@ -119,4 +121,62 @@
 .cert-card__glare--alt { background:linear-gradient(225deg,rgba(255,255,255,0) 5%,rgba(255,255,255,.5) 50%,rgba(255,255,255,0) 70%); mix-blend-mode:overlay; animation:glareAlt 11s ease-in-out infinite; opacity:.25; transform:translateX(120%) rotate(-2deg); }
 @keyframes glareAlt { 0%,60% { transform:translateX(120%) rotate(-2deg);} 75% { transform:translateX(-40%) rotate(-2deg);} 100% { transform:translateX(-120%) rotate(-2deg);} }
 
+/* Landscape no-scroll layout: show all cards, no horizontal scrolling */
+.certs--landscape .certs__grid {
+  --gap: clamp(1rem, 3vw, 2rem);
+  gap: var(--gap);
+  flex-wrap: wrap;          /* allow wrapping so everything stays visible */
+  overflow: visible;        /* no scrolling */
+  justify-content: center;
+}
+.certs--landscape .cert-card {
+  width: auto;              /* override base fixed width */
+  flex: 0 1 calc(50% - var(--gap));
+  max-width: calc(50% - var(--gap));
+  aspect-ratio: 4 / 3;      /* landscape card */
+}
+/* Rotate vertical images to fit inside landscape card without overflow */
+.certs--landscape .cert-card__media { display: grid; place-items: center; }
+.certs--landscape .cert-card__media img {
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+  object-fit: contain;
+  transition: none; /* no animation */
+}
+.certs--landscape .cert-card:hover .cert-card__media img { 
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+}
+@media (max-width: 1024px) {
+  .certs--landscape .cert-card { flex-basis: 100%; max-width: 100%; aspect-ratio: 4 / 4; }
+  .certs--landscape .cert-card__media img {
+    height: 100%;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+  }
+}
+
+/* Certificates (landscape) final overrides: orientation + no hover animation */
+.certs--landscape .cert-card__media img {
+  transform: translate(-50%, -50%) rotate(-90deg) !important;
+  transition: none !important;
+}
+.certs--landscape .cert-card:hover .cert-card__media img {
+  transform: translate(-50%, -50%) rotate(-90deg) !important;
+}
+@media (max-width: 1024px) {
+  .certs--landscape .cert-card__media img {
+    transform: translate(-50%, -50%) rotate(-180deg) !important;
+  }
+}
+
 /* === End Certificates Section === */
+
+/* === Testimonials Equal-Height Overrides === */
+.testimonial-one__carousel .swiper-wrapper { align-items: stretch; }
+.testimonial-one__carousel .swiper-slide { height: auto !important; display: flex; }
+.testimonial-one__single { display: flex; flex-direction: column; height: 100%; }
+.testimonial-one__text-2 { flex: 1 1 auto; }
+.testimonial-one__client-info { margin-top: auto; }

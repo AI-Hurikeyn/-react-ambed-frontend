@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 const certificates = [
 	{
 		img: '/assets/certifics/1000011387.jpg',
-		title: 'Certification Qualité 2024',
+		title: 'Certification Qualité ',
 		issuer: 'Institut National',
 		desc: 'Reconnaissance officielle de la qualité de nos prestations.',
 	},
@@ -83,7 +83,7 @@ const TeamSection: React.FC = () => {
 	}, []);
 
 	return (
-		<section className="team-one certs" id="team">
+		<section className="team-one certs certs--landscape" id="team">
 			<div className="container">
 				<div className="section-title text-center fade-seq">
 					<span className="section-title__tagline">CERTIFICATIONS</span>

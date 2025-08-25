@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                   <li><a href="#team">Notre Équipe</a></li>
                   <li><a href="#services">Nos Services</a></li>
                   <li><a href="#projects">Derniers Projets</a></li>
-                  <li><a href="/book-appointment">Tarifs & Plans</a></li>
+                  <li><a href="#pricing">Tarifs & Plans</a></li>
                 </ul>
               </div>
             </div>
@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <div className="icon icon-svg"><span aria-hidden="true" className="icon-message"></span></div>
-                    <div className="text"><h5>Envoyez un email</h5><p><a href="mailto:MagicDecor@gmail.com">MagicDecor@gmail.com</a></p></div>
+                    <div className="text"><h5>Envoyez un email</h5><p><a href="mailto:magicdecorofficiel@gmail.com">magicdecorofficiel@gmail.com</a></p></div>
                   </li>
                   <li>
                     <div className="icon icon-svg"><span aria-hidden="true" className="icon-location"></span></div>

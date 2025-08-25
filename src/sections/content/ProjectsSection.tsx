@@ -19,7 +19,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projectThumbs, setPro
           <AnimatedReveal animationType="fadeUp" delay={100}>
             <div className="section-title text-center">
               <span className="section-title__tagline">PROJETS RÉUSSIS</span>
-              <h2 className="section-title__title">Gardez un Œil sur Nos<br />Derniers Projets</h2>
+              <h2 className="section-title__title">Gardez un Œil sur Nos<br />Inspiration</h2>
               <div className="section-title__line"></div>
             </div>
           </AnimatedReveal>

@@ -86,13 +86,13 @@ export const testimonialSlides = [
     text: 'Magic Decor a transformé notre maison avec un professionnalisme exceptionnel. Le résultat dépasse toutes nos attentes. Une équipe créative et à l\'écoute !'
   },
   {
-    img: '/vendor/assets/uploads/2022/04/testimonial-1-2.jpg',
+    img: '/vendor/assets/uploads/2022/04/testimonial-1-1.jpg',
     name: 'Yassmine Boughanmi',
     title: 'Notre Cliente',
     text: 'Un service de qualité remarquable ! L\'équipe de Magic Decor a su comprendre parfaitement nos besoins et réaliser un projet magnifique dans les délais.'
   },
   {
-    img: '/vendor/assets/uploads/2022/04/testimonial-1-3.jpg',
+    img: '/vendor/assets/uploads/2022/04/testimonial-1-1.jpg',
     name: 'Ezzedine Abid',
     title: 'Notre Client',
     text: 'Je recommande vivement Magic Decor pour leur expertise et leur attention aux détails. Ils ont donné vie à notre vision avec brio et créativité.'

@@ -28,7 +28,7 @@ const HeroSection: React.FC = () => {
                     <div className="col-xl-12">
                       <div className="main-slider__content">
                         <div className="main-slider__icon">
-                          <img src="/vendor/assets/uploads/2022/04/main-slider-icon.png" alt="" />
+                          <img src="/assets/logos/logo-symbol.png" alt="" />
                         </div>
                         <div className="main-slider__sub-title-box">
                           <p className="main-slider__sub-title">{slide.subheadline}</p>

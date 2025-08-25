@@ -92,6 +92,12 @@ body {
   }
 }
 
+/* Lock scroll and avoid layout jumps while preloading */
+body.preloading { overflow: hidden !important; }
+
+.magic-preloader { opacity: 1; transition: opacity .35s ease; background-color: #0d0d0d; }
+.magic-preloader--fade { opacity: 0; pointer-events: none; }
+
 /* Make main header logo bigger */
 .main-header__logo img {
   max-height: 70px !important;
