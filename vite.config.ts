@@ -20,8 +20,23 @@ export default defineConfig({
     port: 5173,
     open: true
   },
+  css: { 
+    devSourcemap: false 
+  },
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: false,          // hide original source files in prod
+    cssCodeSplit: false,       // ship a single CSS file
+    target: 'es2018',
+    chunkSizeWarningLimit: 900,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          swiper: ['swiper'],
+          motion: ['framer-motion']
+        }
+      }
+    }
   }
 })

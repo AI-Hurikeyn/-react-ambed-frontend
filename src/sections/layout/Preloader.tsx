@@ -18,8 +18,8 @@ const Preloader: React.FC = () => {
     // add body flag to avoid scroll/layout glitches while loading
     document.body.classList.add('preloading');
 
-    const MIN_VISIBLE = 600; // ms, keep a short, consistent brand moment
-    const MAX_WAIT = 3500;   // ms, never block too long
+    const MIN_VISIBLE = 400; // ms, keep a short, consistent brand moment
+    const MAX_WAIT = 2800;   // ms, never block too long
     const start = performance.now();
 
     const fontsReady = (document as any).fonts?.ready ?? Promise.resolve();

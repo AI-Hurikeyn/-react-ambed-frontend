@@ -1,5 +1,8 @@
 /* MAGIC DECOR - Main Stylesheet */
 
+/* Import performance optimizations first */
+@import url('./styles/performance.css');
+
 /* Import design system variables first - for use in atomic components */
 @import url('./styles/atomic/base/variables.css');
 
@@ -95,8 +98,7 @@ body {
 /* Lock scroll and avoid layout jumps while preloading */
 body.preloading { overflow: hidden !important; }
 
-.magic-preloader { opacity: 1; transition: opacity .35s ease; background-color: #0d0d0d; }
-.magic-preloader--fade { opacity: 0; pointer-events: none; }
+/* Moved to inline critical CSS in index.html for faster paint */
 
 /* Make main header logo bigger */
 .main-header__logo img {

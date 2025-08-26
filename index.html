@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en-US">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Performance: Preconnect to font domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Performance: Preload critical resources -->
+    <link rel="preload" as="image" href="/vendor/assets/uploads/2022/04/main-slider-1-1.jpg" fetchpriority="high">
+    <link rel="preload" as="font" href="/vendor/assets/themes/ambed/assets/vendors/fontawesome/webfonts/fa-solid-900.woff2" type="font/woff2" crossorigin>
+    
+    <!-- Security & SEO -->
+    <link rel="icon" type="image/png" href="/assets/logos/logo-symbol.png" />
+    <title>Magic Decor - Interior Design & Wall Decoration</title>
+    <meta name='robots' content='max-image-preview:large' />
+    <meta name="description" content="Professional interior design and wall decoration services in Tunisia. Transform your space with Magic Decor's expert craftsmanship.">
+    
+    <!-- Performance: Critical CSS first -->
+    <style>
+      /* Critical above-the-fold styles */
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+      .preloading { overflow: hidden !important; }
+      .magic-preloader { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #0d0d0d; z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 1; transition: opacity .35s ease; }
+      .magic-preloader--fade { opacity: 0; pointer-events: none; }
+      img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }
+    </style>
+    
     <!-- Vendor and theme CSS for pixel-perfect design and icons -->
     <link rel="stylesheet" href="/vendor/assets/themes/ambed/style.css?ver=1754260206.css">
     <link rel="stylesheet" href="/vendor/assets/themes/ambed/style.css?ver=1754260484.css">
@@ -17,16 +44,9 @@
     <link rel="stylesheet" href="/vendor/assets/themes/ambed/assets/vendors/ambed-icons/style.css">
     <!-- Black and white theme - original header colors, natural images -->
     <link rel="stylesheet" href="/css/black-white-theme.css">
-    <!-- Dynamic scroll animations -->
+    
+    <!-- Performance: Defer non-critical JS -->
     <script src="/js/scroll-animations.js" defer></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="/assets/logos/logo-symbol.png" />
-  <title>Magic Decor - Interior Design & Wall Decoration</title>
-  
-  <!-- Original WordPress Meta & Styles -->
-  <meta name='robots' content='max-image-preview:large' />
-  <style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
   
   <!-- WordPress Core Styles -->
   <style id='wp-emoji-styles-inline-css'>

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
 import type { Swiper as SwiperClass } from 'swiper';
 
-// Import decomposed sections
+// Import decomposed sections - Keep critical above-the-fold imports
 import {
   // Layout components
   CustomCursor,
@@ -14,20 +14,23 @@ import {
   SearchPopup,
   Footer,
   Header,
-  // Content sections
+  // Content sections - critical above-the-fold
   HeroSection,
   AboutSection,
   FeatureSection,
   ServicesSection,
   QualityWorkSection,
-  ProjectsSection,
-  TeamSection,
-  TestimonialsSection,
-  BrandSection,
-  BlogSection,
 } from '../sections';
 
+// Lazy-load heavy below-the-fold sections
+const ProjectsSection = lazy(() => import('../sections/content/ProjectsSection'));
+const TeamSection = lazy(() => import('../sections/content/TeamSection'));
+const TestimonialsSection = lazy(() => import('../sections/content/TestimonialsSection'));
+const BrandSection = lazy(() => import('../sections/content/BrandSection'));
+const BlogSection = lazy(() => import('../sections/content/BlogSection'));
+
 import PricingPage from '../components/PricingPage';
+import Defer from '../components/Defer';
 
 const HomePage = () => {
   // Hero slider state
@@ -228,17 +231,37 @@ const HomePage = () => {
         </div>
         <QualityWorkSection />
         <div id="portfolio">
-          <ProjectsSection 
-            projectThumbs={projectThumbs}
-            setProjectThumbs={setProjectThumbs}
-          />
+          <Defer rootMargin="300px">
+            <Suspense fallback={<div style={{height: '400px'}} />}>
+              <ProjectsSection 
+                projectThumbs={projectThumbs}
+                setProjectThumbs={setProjectThumbs}
+              />
+            </Suspense>
+          </Defer>
         </div>
         <div id="team">
-          <TeamSection />
+          <Defer rootMargin="300px">
+            <Suspense fallback={<div style={{height: '400px'}} />}>
+              <TeamSection />
+            </Suspense>
+          </Defer>
         </div>
-        <TestimonialsSection />
-        <BrandSection />
-        <BlogSection />
+        <Defer rootMargin="300px">
+          <Suspense fallback={<div style={{height: '300px'}} />}>
+            <TestimonialsSection />
+          </Suspense>
+        </Defer>
+        <Defer rootMargin="300px">
+          <Suspense fallback={<div style={{height: '200px'}} />}>
+            <BrandSection />
+          </Suspense>
+        </Defer>
+        <Defer rootMargin="300px">
+          <Suspense fallback={<div style={{height: '400px'}} />}>
+            <BlogSection />
+          </Suspense>
+        </Defer>
       </div>
       
       {/* Contact Section - Footer */}
