@@ -5,8 +5,9 @@ const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const preloadImage = (src?: string) => new Promise<void>(resolve => {
   if (!src) return resolve();
   const img = new Image();
-  img.onload = () => resolve();
-  img.onerror = () => resolve();
+  const timeout = setTimeout(() => resolve(), 2000); // 2s timeout
+  img.onload = () => { clearTimeout(timeout); resolve(); };
+  img.onerror = () => { clearTimeout(timeout); resolve(); };
   img.src = src;
 });
 
@@ -18,16 +19,22 @@ const Preloader: React.FC = () => {
     // add body flag to avoid scroll/layout glitches while loading
     document.body.classList.add('preloading');
 
-    const MIN_VISIBLE = 400; // ms, keep a short, consistent brand moment
-    const MAX_WAIT = 2800;   // ms, never block too long
+    const MIN_VISIBLE = 300; // ms, shorter for refresh
+    const MAX_WAIT = 2000;   // ms, much shorter timeout
     const start = performance.now();
 
-    const fontsReady = (document as any).fonts?.ready ?? Promise.resolve();
-    const heroReady = preloadImage(sliderData?.[0]?.bg);
+    // More robust loading detection
+    const fontsReady = (document as any).fonts?.ready?.catch(() => Promise.resolve()) ?? Promise.resolve();
+    const heroReady = preloadImage(sliderData?.[0]?.bg).catch(() => Promise.resolve());
 
     const windowLoaded = new Promise<void>(resolve => {
       if (document.readyState === 'complete') return resolve();
-      const onLoad = () => { window.removeEventListener('load', onLoad); resolve(); };
+      const timeout = setTimeout(() => resolve(), 1500); // timeout after 1.5s
+      const onLoad = () => { 
+        clearTimeout(timeout);
+        window.removeEventListener('load', onLoad); 
+        resolve(); 
+      };
       window.addEventListener('load', onLoad);
     });
 
@@ -41,12 +48,29 @@ const Preloader: React.FC = () => {
       if (elapsed < MIN_VISIBLE) await wait(MIN_VISIBLE - elapsed);
       // fade out then unmount
       setFading(true);
-      await wait(350);
+      await wait(300);
       setVisible(false);
       document.body.classList.remove('preloading');
+    }).catch(() => {
+      // Fallback in case of any errors
+      setFading(true);
+      setTimeout(() => {
+        setVisible(false);
+        document.body.classList.remove('preloading');
+      }, 300);
     });
 
+    // Emergency fallback - always remove after 3s max
+    const emergencyTimeout = setTimeout(() => {
+      setFading(true);
+      setTimeout(() => {
+        setVisible(false);
+        document.body.classList.remove('preloading');
+      }, 300);
+    }, 3000);
+
     return () => {
+      clearTimeout(emergencyTimeout);
       document.body.classList.remove('preloading');
     };
   }, []);

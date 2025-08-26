@@ -7,7 +7,21 @@
   ],
   "headers": [
     {
+      "source": "/vendor/**",
+      "headers": [
+        { "key": "x-robots-tag", "value": "noindex, nofollow" },
+        { "key": "cache-control", "value": "no-store" }
+      ]
+    },
+    {
       "source": "/**/*.map",
+      "headers": [
+        { "key": "x-robots-tag", "value": "noindex, nofollow" },
+        { "key": "cache-control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/src/**",
       "headers": [
         { "key": "x-robots-tag", "value": "noindex, nofollow" },
         { "key": "cache-control", "value": "no-store" }
@@ -33,7 +47,9 @@
       "headers": [
         { "key": "x-content-type-options", "value": "nosniff" },
         { "key": "x-frame-options", "value": "DENY" },
-        { "key": "x-xss-protection", "value": "1; mode=block" }
+        { "key": "x-xss-protection", "value": "1; mode=block" },
+        { "key": "content-security-policy", "value": "script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline'; object-src 'none';" },
+        { "key": "referrer-policy", "value": "strict-origin-when-cross-origin" }
       ]
     }
   ]
