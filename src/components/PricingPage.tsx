@@ -2,46 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Header from '../sections/layout/Header';
 import { motion } from 'framer-motion';
 import api from '@services/api';
-
-// Lightweight Leaflet loader (no extra npm deps)
-// Loads Leaflet JS/CSS from CDN and exposes global `L`.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const L: any;
-
-const loadLeaflet = async () => {
-  // If already loaded
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if ((window as any).L && (window as any).L.map) return Promise.resolve();
-
-  const leafletCssHref = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  const leafletJsSrc = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-
-  const ensureLink = () => {
-    const existing = Array.from(document.styleSheets).some((s) => {
-      try { return (s as CSSStyleSheet).href?.includes('leaflet'); } catch { return false; }
-    });
-    if (!existing) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = leafletCssHref;
-      document.head.appendChild(link);
-    }
-  };
-
-  const ensureScript = () => new Promise<void>((resolve, reject) => {
-    const existing = document.querySelector(`script[src="${leafletJsSrc}"]`);
-    if (existing) { existing.addEventListener('load', () => resolve()); return; }
-    const script = document.createElement('script');
-    script.src = leafletJsSrc;
-    script.async = true;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error('Failed to load Leaflet'));
-    document.body.appendChild(script);
-  });
-
-  ensureLink();
-  await ensureScript();
-};
+import 'leaflet/dist/leaflet.css';
 
 // Map Picker Component
 interface MapPickerProps {
@@ -62,24 +23,33 @@ const MapPicker: React.FC<MapPickerProps> = ({ value, onChange }) => {
     let disposed = false;
     (async () => {
       try {
-        await loadLeaflet();
+        // Lazy import Leaflet from local bundle
+        const leafletModule: any = await import('leaflet');
+        const Lm: any = leafletModule.default ?? leafletModule;
+
+        // Fix marker icon URLs in bundlers
+        const iconRetinaUrl = new URL('leaflet/dist/images/marker-icon-2x.png', import.meta.url).toString();
+        const iconUrl = new URL('leaflet/dist/images/marker-icon.png', import.meta.url).toString();
+        const shadowUrl = new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).toString();
+        Lm.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
+
         if (disposed) return;
         const center = value ? [value.lat, value.lng] : [36.8065, 10.1815]; // Tunis default
-        const map = L.map(mapRef.current!, { zoomControl: true }).setView(center, value ? 14 : 12);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        const map = Lm.map(mapRef.current!, { zoomControl: true }).setView(center, value ? 14 : 12);
+        Lm.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           attribution: '&copy; OpenStreetMap'
         }).addTo(map);
         mapInst.current = map;
 
         if (value) {
-          markerRef.current = L.marker(center, { draggable: true }).addTo(map);
+          markerRef.current = Lm.marker(center, { draggable: true }).addTo(map);
         }
 
         const setPoint = async (lat: number, lng: number) => {
-          const latlng = [lat, lng];
+          const latlng = [lat, lng] as [number, number];
           if (!markerRef.current) {
-            markerRef.current = L.marker(latlng, { draggable: true }).addTo(map);
+            markerRef.current = Lm.marker(latlng, { draggable: true }).addTo(map);
             markerRef.current.on('dragend', async () => {
               const pos = markerRef.current.getLatLng();
               const addr = await reverseGeocode(pos.lat, pos.lng);
