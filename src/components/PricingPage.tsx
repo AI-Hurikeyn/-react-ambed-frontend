@@ -30,7 +30,7 @@ const MapPicker: React.FC<MapPickerProps> = ({ value, onChange }) => {
         // Fix marker icon URLs in bundlers
         const iconRetinaUrl = new URL('leaflet/dist/images/marker-icon-2x.png', import.meta.url).toString();
         const iconUrl = new URL('leaflet/dist/images/marker-icon.png', import.meta.url).toString();
-        const shadowUrl = new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).toString();
+        const shadowUrl = new URL('leaflet/dist/images/marker-shadow.png', import
         Lm.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
 
         if (disposed) return;
@@ -296,11 +296,11 @@ async function reverseGeocode(lat: number, lng: number): Promise<string | null> 
   try {
     const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
     const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
-    if (!res.ok) return null;
+    if (!res.ok) return `Lat ${lat.toFixed(5)}, Lng ${lng.toFixed(5)}`;
     const data = await res.json();
-    return data?.display_name || null;
+    return data?.display_name || `Lat ${lat.toFixed(5)}, Lng ${lng.toFixed(5)}`;
   } catch {
-    return null;
+    return `Lat ${lat.toFixed(5)}, Lng ${lng.toFixed(5)}`;
   }
 }
 
