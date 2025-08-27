@@ -3,6 +3,9 @@ import Header from '../sections/layout/Header';
 import { motion } from 'framer-motion';
 import api from '@services/api';
 import 'leaflet/dist/leaflet.css';
+import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
+import marker from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 // Map Picker Component
 interface MapPickerProps {
@@ -27,11 +30,17 @@ const MapPicker: React.FC<MapPickerProps> = ({ value, onChange }) => {
         const leafletModule: any = await import('leaflet');
         const Lm: any = leafletModule.default ?? leafletModule;
 
-        // Fix marker icon URLs in bundlers
-        const iconRetinaUrl = new URL('leaflet/dist/images/marker-icon-2x.png', import.meta.url).toString();
-        const iconUrl = new URL('leaflet/dist/images/marker-icon.png', import.meta.url).toString();
-        const shadowUrl = new URL('leaflet/dist/images/marker-shadow.png', import
-        Lm.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
+        // Build an explicit default icon using statically imported assets
+        const defaultIcon = Lm.icon({
+          iconRetinaUrl: marker2x,
+          iconUrl: marker,
+          shadowUrl: markerShadow,
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          tooltipAnchor: [16, -28],
+          shadowSize: [41, 41],
+        });
 
         if (disposed) return;
         const center = value ? [value.lat, value.lng] : [36.8065, 10.1815]; // Tunis default
@@ -43,13 +52,13 @@ const MapPicker: React.FC<MapPickerProps> = ({ value, onChange }) => {
         mapInst.current = map;
 
         if (value) {
-          markerRef.current = Lm.marker(center, { draggable: true }).addTo(map);
+          markerRef.current = Lm.marker(center, { draggable: true, icon: defaultIcon }).addTo(map);
         }
 
         const setPoint = async (lat: number, lng: number) => {
           const latlng = [lat, lng] as [number, number];
           if (!markerRef.current) {
-            markerRef.current = Lm.marker(latlng, { draggable: true }).addTo(map);
+            markerRef.current = Lm.marker(latlng, { draggable: true, icon: defaultIcon }).addTo(map);
             markerRef.current.on('dragend', async () => {
               const pos = markerRef.current.getLatLng();
               const addr = await reverseGeocode(pos.lat, pos.lng);
@@ -308,23 +317,41 @@ async function reverseGeocode(lat: number, lng: number): Promise<string | null> 
 const styles = `
 .pricing-request { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:#1f2937; }
 
-.pr-hero { position:relative; min-height:72vh; display:grid; place-items:center; padding:120px 20px 60px; overflow:hidden; }
-.pr-hero__bg { position:absolute; inset:0; background: radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,.06), transparent), linear-gradient(135deg, #0f172a, #334155); }
-.pr-hero__veil { position:absolute; inset:0; background: radial-gradient(600px 300px at 80% 90%, rgba(16,185,129,.15), transparent); }
-.pr-hero__content { position:relative; z-index:2; text-align:center; color:#fff; max-width:900px; }
-.pr-hero .badge { display:inline-block; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); padding:8px 14px; border-radius:999px; letter-spacing:.08em; font-size:12px; margin-bottom:18px; backdrop-filter: blur(8px); }
-.pr-hero h1 { font-size: clamp(32px, 6vw, 56px); line-height:1.05; margin:0 0 16px; font-weight:800; }
-.pr-hero p { opacity:.9; font-size: clamp(14px, 1.6vw, 18px); margin:0 0 26px; }
-.pr-hero .btn-outline { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.45); border-radius:14px; padding:12px 22px; font-weight:600; transition:.3s; }
+/* Fluid, dynamic hero that adapts to all screen sizes */
+.pr-hero { 
+  position:relative; 
+  min-height: min(78svh, 780px); 
+  display:grid; 
+  place-items:center; 
+  /* fluid side/bottom paddings */
+  padding: clamp(36px, 5vw, 80px) clamp(16px, 4vw, 40px) clamp(40px, 6vw, 96px);
+  /* add safe area to top padding for notches */
+  padding-top: calc(clamp(80px, 10vw, 140px) + env(safe-area-inset-top));
+  overflow:hidden; 
+}
+.pr-hero__bg { 
+  position:absolute; inset:0; 
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,.06), transparent), linear-gradient(135deg, #0f172a, #334155); 
+}
+.pr-hero__veil { 
+  position:absolute; inset:0; pointer-events:none; 
+  /* keep the glow mostly below the fold by default */
+  background: radial-gradient(700px 320px at 70% 115%, rgba(16,185,129,.14), transparent);
+}
+.pr-hero__content { position:relative; z-index:2; text-align:center; color:#fff; max-width: min(92vw, 960px); padding-inline: clamp(4px, 2vw, 16px); }
+.pr-hero .badge { display:inline-block; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); padding: clamp(6px, 1.4vw, 10px) clamp(10px, 2vw, 14px); border-radius:999px; letter-spacing:.08em; font-size: clamp(11px, 1.7vw, 13px); margin-bottom: clamp(10px, 1.8vw, 18px); backdrop-filter: blur(8px); }
+.pr-hero h1 { font-size: clamp(26px, 6.4vw, 56px); line-height:1.08; margin:0 0 clamp(12px, 2vw, 18px); font-weight:800; letter-spacing:-.01em; text-wrap: balance; }
+.pr-hero p { opacity:.92; font-size: clamp(13px, 2.1vw, 18px); line-height: 1.6; margin:0 0 clamp(18px, 3vw, 28px); max-width: 65ch; margin-inline:auto; }
+.pr-hero .btn-outline { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.45); border-radius:14px; padding: clamp(10px, 1.6vw, 14px) clamp(16px, 2.6vw, 22px); font-weight:700; transition:.3s; }
 .pr-hero .btn-outline:hover { transform: translateY(-2px); border-color:#fff; }
 
-.pr-form { padding: 60px 0 100px; background: linear-gradient(180deg, #ffffff, #f8fafc 40%, #f1f5f9 100%); }
-.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-.card { background:#fff; border-radius:24px; padding:28px; box-shadow: 0 20px 60px -20px rgba(2,6,23,.25), 0 10px 24px -12px rgba(2,6,23,.18); border:1px solid rgba(2,6,23,.06); }
-.card__head h2 { margin:0 0 6px; font-size:26px; font-weight:800; letter-spacing:-.02em; }
-.card__head p { margin:0 0 18px; color:#64748b; font-size:14px; }
+.pr-form { padding: clamp(44px, 6vw, 60px) 0 clamp(80px, 9vw, 100px); background: linear-gradient(180deg, #ffffff, #f8fafc 40%, #f1f5f9 100%); }
+.container { max-width: min(1080px, 92vw); margin: 0 auto; padding: 0 clamp(16px, 3vw, 20px); }
+.card { background:#fff; border-radius:24px; padding: clamp(22px, 3.2vw, 28px); box-shadow: 0 20px 60px -20px rgba(2,6,23,.25), 0 10px 24px -12px rgba(2,6,23,.18); border:1px solid rgba(2,6,23,.06); }
+.card__head h2 { margin:0 0 6px; font-size: clamp(20px, 2.2vw, 26px); font-weight:800; letter-spacing:-.02em; }
+.card__head p { margin:0 0 18px; color:#64748b; font-size: clamp(13px, 1.4vw, 14px); }
 
-.field-group { margin: 18px 0 14px; }
+.field-group { margin: clamp(14px, 2.2vw, 18px) 0 clamp(10px, 2vw, 14px); }
 .field-group label { display:block; font-size:13px; font-weight:700; color:#0f172a; margin: 0 0 10px; letter-spacing:.02em; }
 .field-group input[type="text"],
 .field-group input[type="tel"],
@@ -369,9 +396,34 @@ const styles = `
 
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-@media (max-width: 700px) {
+/* Tablet */
+@media (max-width: 1024px) {
+  .pr-hero { min-height: 68svh; }
+  .pr-hero h1 { font-size: clamp(26px, 5.6vw, 44px); }
+  .pr-hero__veil { background: radial-gradient(600px 260px at 65% 112%, rgba(16,185,129,.12), transparent); }
+}
+
+/* Large phones / small tablets */
+@media (max-width: 820px) {
+  .pr-hero { min-height: 64svh; }
+  .pr-hero__content { padding: 0 8px; }
+  .pr-hero .badge { font-size: 11px; padding: 6px 10px; margin-bottom: 12px; }
+  .pr-hero h1 { font-size: clamp(24px, 6.6vw, 38px); }
+  .pr-hero p { font-size: 14px; line-height: 1.55; margin: 0 0 18px; }
+  .pr-hero .btn-outline { padding: 10px 16px; font-size: 14px; border-radius: 12px; }
+  .pr-hero__bg { background: radial-gradient(900px 450px at 20% 8%, rgba(255,255,255,.06), transparent), linear-gradient(135deg, #0f172a, #334155); }
+  .pr-hero__veil { background: radial-gradient(480px 220px at 70% 108%, rgba(16,185,129,.10), transparent); }
+
   .card { padding:18px; border-radius:18px; }
   .actions { flex-direction: column; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .pr-hero { min-height: 60svh; }
+  .pr-hero h1 { font-size: clamp(22px, 7.4vw, 30px); }
+  .pr-hero p { font-size: 13px; }
+  .pr-hero__veil { background: radial-gradient(360px 200px at 70% 112%, rgba(16,185,129,.10), transparent); }
 }
 `;
 
